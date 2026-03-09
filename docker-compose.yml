@@ -1,0 +1,159 @@
+version: '3.8'
+
+# Secure production-ready Docker Compose for CCCZ Portal
+# Database: MySQL 8.0
+# Cache: Redis 7
+# API: Next.js 13 + Node 18
+
+services:
+  # ============================================================================
+  # Database Service - MySQL 8.0
+  # ============================================================================
+  db:
+    image: mysql:8.0-alpine
+    container_name: cccz_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secure_pwd_change_me}
+      MYSQL_DATABASE: ${DB_NAME:-ccclezoo_db}
+      MYSQL_USER: ${DB_USER:-ccclezoo_user}
+      MYSQL_PASSWORD: ${DB_PASS:-user_secure_pwd_change_me}
+      MYSQL_INITIALIZATIN_FILES_DIR: /docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    networks:
+      - cccz_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USER:-ccclezoo_user}", "-p${DB_PASS:-user_secure_pwd_change_me}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true
+    # Limit resources
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    command: >
+      --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  # ============================================================================
+  # Cache Service - Redis 7
+  # ============================================================================
+  cache:
+    image: redis:7-alpine
+    container_name: cccz_cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache_data:/data
+    networks:
+      - cccz_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+
+  # ============================================================================
+  # API Service - Next.js Application
+  # ============================================================================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cccz_api
+    environment:
+      # Application
+      NODE_ENV: ${NODE_ENV:-production}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000}
+
+      # Database
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ccclezoo_portail}
+      DB_USER: ${DB_USER:-ccclezoo_julio}
+      DB_PASS: ${DB_PASS:-selej50@}
+
+      # Redis Cache
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+
+      # JWT & Security
+      JWT_SECRET: ${JWT_SECRET:-jwt_secret_key_change_me_in_production}
+      SESSION_SECRET: ${SESSION_SECRET:-session_secret_key_change_me_in_production}
+
+      # API Keys (if needed)
+      API_KEY: ${API_KEY:-api_key_change_me}
+
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app:ro
+      - /app/.next
+      - /app/node_modules
+    networks:
+      - cccz_network
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    # Limit resources
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    # Run as non-root user
+    user: "node"
+
+# ============================================================================
+# Networks & Volumes
+# ============================================================================
+
+networks:
+  cccz_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  db_data:
+    driver: local
+  cache_data:
+    driver: local

@@ -1,0 +1,66 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  # Permet aussi un déploiement manuel
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install --production
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CPANEL_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+          ssh-keyscan -H 41.79.235.70 >> ~/.ssh/known_hosts
+      
+      - name: Deploy to cPanel
+        run: |
+          # Variables
+          export REMOTE_USER="ccclezoo"
+          export REMOTE_HOST="41.79.235.70"
+          export REMOTE_PATH="/home/ccclezoo/public_html"
+          
+          # Copier les fichiers via SCP
+          scp -r .next "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+          scp -r public "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+          scp package.json "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+          scp package-lock.json "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+          
+          # Exécuter le build et restart sur le serveur
+          ssh "$REMOTE_USER@$REMOTE_HOST" << 'SSHEOF'
+          cd /home/ccclezoo/public_html
+          npm install --production
+          npm run build
+          echo "✓ Déploiement réussi"
+          SSHEOF
+      
+      - name: Notify success
+        if: success()
+        run: echo "✓ Déploiement sur www.ccclezoo.cd réussi !"
+      
+      - name: Notify failure
+        if: failure()
+        run: echo "✗ Échec du déploiement. Vérifiez les logs ci-dessus."

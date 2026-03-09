@@ -1,0 +1,5 @@
+﻿{
+    "prisma.pinToPrisma6": true,
+    "figmaCssToTailwind.geminiApiKey": "YOUR_API_KEY_HERE",
+    "CodeGPT.apiKey": "YOUR_OPENAI_KEY_HERE"
+}

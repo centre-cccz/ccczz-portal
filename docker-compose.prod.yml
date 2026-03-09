@@ -1,0 +1,411 @@
+version: '3.8'
+
+# Production-ready Docker Compose for CCCZ Portal with Event Management System
+# Database: MySQL 8.0
+# Cache: Redis 7
+# API: Next.js 13 + Node 18
+# NEW: Event Queue Worker, Webhook Service, Notification Service
+
+services:
+  # ============================================================================
+  # Database Service - MySQL 8.0
+  # ============================================================================
+  db:
+    image: mysql:8.0-alpine
+    container_name: cccz_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secure_pwd_change_me}
+      MYSQL_DATABASE: ${DB_NAME:-ccclezoo_db}
+      MYSQL_USER: ${DB_USER:-ccclezoo_user}
+      MYSQL_PASSWORD: ${DB_PASS:-user_secure_pwd_change_me}
+      MYSQL_INITIALIZATIN_FILES_DIR: /docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./db/event_system_audit.sql:/docker-entrypoint-initdb.d/02-event-system.sql:ro
+    networks:
+      - cccz_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USER:-ccclezoo_user}", "-p${DB_PASS:-user_secure_pwd_change_me}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    command: >
+      --default-authentication-plugin=mysql_native_password  --character-set-server=utf8mb4  --collation-server=utf8mb4_unicode_ci
+
+  # ============================================================================
+  # Cache Service - Redis 7
+  # ============================================================================
+  cache:
+    image: redis:7-alpine
+    container_name: cccz_cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache_data:/data
+    networks:
+      - cccz_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+
+  # ============================================================================
+  # API Service - Next.js Application (Main Server)
+  # ============================================================================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cccz_api
+    environment:
+      # Application
+      NODE_ENV: ${NODE_ENV:-production}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000}
+
+      # Database
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ccclezoo_db}
+      DB_USER: ${DB_USER:-ccclezoo_user}
+      DB_PASS: ${DB_PASS:-user_secure_pwd_change_me}
+
+      # Redis Cache
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+
+      # Redis Bull Queue
+      BULL_REDIS_URL: redis://${REDIS_PASSWORD:-redis_secure_pwd_change_me}@cache:6379
+      BULL_PREFIX: ${BULL_PREFIX:-cccz:queue}
+
+      # JWT & Security
+      JWT_SECRET: ${JWT_SECRET:-jwt_secret_key_change_me_in_production}
+      SESSION_SECRET: ${SESSION_SECRET:-session_secret_key_change_me_in_production}
+
+      # API Keys
+      API_KEY: ${API_KEY:-api_key_change_me}
+
+      # Event System
+      EVENT_MAX_RETRIES: ${EVENT_MAX_RETRIES:-3}
+      EVENT_NOTIFICATION_DELAY_MS: ${EVENT_NOTIFICATION_DELAY_MS:-1000}
+
+      # Webhook Configuration
+      WEBHOOK_TIMEOUT: ${WEBHOOK_TIMEOUT:-10000}
+      WEBHOOK_MAX_RETRIES: ${WEBHOOK_MAX_RETRIES:-3}
+      WEBHOOK_RETRY_DELAY_MS: ${WEBHOOK_RETRY_DELAY_MS:-5000}
+
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app:ro
+      - /app/.next
+      - /app/node_modules
+    networks:
+      - cccz_network
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  # ============================================================================
+  # NEW: Event Queue Worker Service
+  # ============================================================================
+  # Executes background jobs (send reminders, archive events, etc.)
+  # Powered by Bull Queue + Redis
+  # ============================================================================
+  event-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: cccz_event_worker
+    environment:
+      # Application
+      NODE_ENV: ${NODE_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+      # Database
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ccclezoo_db}
+      DB_USER: ${DB_USER:-ccclezoo_user}
+      DB_PASS: ${DB_PASS:-user_secure_pwd_change_me}
+
+      # Redis
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+      BULL_REDIS_URL: redis://${REDIS_PASSWORD:-redis_secure_pwd_change_me}@cache:6379
+      BULL_PREFIX: ${BULL_PREFIX:-cccz:queue}
+
+      # Job Configuration
+      JOBS_SEND_REMINDERS_CRON: ${JOBS_SEND_REMINDERS_CRON:-0 3 * * *}
+      JOBS_ARCHIVE_CRON: ${JOBS_ARCHIVE_CRON:-0 1 * * *}
+      JOBS_REPORT_CRON: ${JOBS_REPORT_CRON:-0 0 * * 0}
+      JOB_ATTEMPTS: ${JOB_ATTEMPTS:-3}
+      JOB_BACKOFF_DELAY: ${JOB_BACKOFF_DELAY:-5000}
+
+      # Notifications
+      SMTP_HOST: ${SMTP_HOST:-smtp.provider.com}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-notifications@cccz.org}
+      SMTP_PASS: ${SMTP_PASS}
+      NOTIFICATION_FROM: ${NOTIFICATION_FROM:-events@cccz.org}
+
+    volumes:
+      - ./lib/queues:/app/lib/queues:ro
+      - ./services/workers:/app/services/workers:ro
+    networks:
+      - cccz_network
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3001/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # ============================================================================
+  # NEW: Webhook Service
+  # ============================================================================
+  # Handles webhook delivery and retry logic
+  # Isolated service for better scaling and fault tolerance
+  # ============================================================================
+  webhook-service:
+    build:
+      context: ./services/webhook
+      dockerfile: Dockerfile
+    container_name: cccz_webhook_service
+    environment:
+      # Application
+      NODE_ENV: ${NODE_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: 3001
+
+      # Database
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ccclezoo_db}
+      DB_USER: ${DB_USER:-ccclezoo_user}
+      DB_PASS: ${DB_PASS:-user_secure_pwd_change_me}
+
+      # Redis
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+      BULL_REDIS_URL: redis://${REDIS_PASSWORD:-redis_secure_pwd_change_me}@cache:6379
+
+      # Webhook Configuration
+      WEBHOOK_TIMEOUT: ${WEBHOOK_TIMEOUT:-10000}
+      WEBHOOK_MAX_RETRIES: ${WEBHOOK_MAX_RETRIES:-3}
+      WEBHOOK_RETRY_DELAY_MS: ${WEBHOOK_RETRY_DELAY_MS:-5000}
+      WEBHOOK_BATCH_SIZE: ${WEBHOOK_BATCH_SIZE:-10}
+
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./services/webhook:/app:ro
+      - /app/node_modules
+    networks:
+      - cccz_network
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3001/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # ============================================================================
+  # NEW: Notification Service
+  # ============================================================================
+  # Handles email, SMS, and push notifications
+  # Isolated service to prevent blocking main API
+  # ============================================================================
+  notification-service:
+    build:
+      context: ./services/notifications
+      dockerfile: Dockerfile
+    container_name: cccz_notification_service
+    environment:
+      # Application
+      NODE_ENV: ${NODE_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: 3002
+
+      # Redis Queue
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+      BULL_REDIS_URL: redis://${REDIS_PASSWORD:-redis_secure_pwd_change_me}@cache:6379
+      BULL_PREFIX: ${BULL_PREFIX:-cccz:queue}
+
+      # Email (SMTP)
+      SMTP_HOST: ${SMTP_HOST:-smtp.provider.com}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-notifications@cccz.org}
+      SMTP_PASS: ${SMTP_PASS}
+      NOTIFICATION_FROM: ${NOTIFICATION_FROM:-events@cccz.org}
+      NOTIFICATION_FROM_NAME: ${NOTIFICATION_FROM_NAME:-Centre Culturel CCCZ}
+
+      # Notification Behavior
+      NOTIFY_QUEUE_CONCURRENCY: ${NOTIFY_QUEUE_CONCURRENCY:-5}
+      NOTIFY_BATCH_DELAY: ${NOTIFY_BATCH_DELAY:-1000}
+
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./services/notifications:/app:ro
+      - /app/node_modules
+    networks:
+      - cccz_network
+    depends_on:
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3002/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+  # ============================================================================
+  # OPTIONAL: Bull Board - Queue Monitoring Dashboard
+  # ============================================================================
+  # Visual dashboard to monitor jobs and queues
+  # Access at http://localhost:3003
+  # ============================================================================
+  bull-board:
+    build:
+      context: ./services/bull-board
+      dockerfile: Dockerfile
+    container_name: cccz_bull_board
+    environment:
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secure_pwd_change_me}
+      BULL_REDIS_URL: redis://${REDIS_PASSWORD:-redis_secure_pwd_change_me}@cache:6379
+      PORT: 3003
+      NODE_ENV: ${NODE_ENV:-production}
+
+    ports:
+      - "3003:3003"
+    networks:
+      - cccz_network
+    depends_on:
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# ============================================================================
+# Networks & Volumes
+# ============================================================================
+networks:
+  cccz_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  db_data:
+    driver: local
+  cache_data:
+    driver: local

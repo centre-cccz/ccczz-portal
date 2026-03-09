@@ -1,0 +1,755 @@
+$(document).ready(function() {
+	InitModal();
+	UpdateSliders();
+	SwitcherHeaderCoinsDetails();
+	SwitcherCurrencyCalc();
+	UpdateSliders();
+	RangeSlider();
+	Support();
+	PersonSlider();
+	ScrollToHash();
+	Tabs('.js-investors');	
+	Tabs('.js-banners');
+	Tabs('.js-settings');
+	ShowScroll('.js-fixed-header', 250);
+	DashboardTime();
+	DashboardWalletsSlider();
+	WithdrawChoiseCoin();
+	SelectWithdrawWallet();
+	CopySendAddress();
+	CopySendValue();
+	AwaitAnim();
+	List('.js-list', '.js-show-list', '.js-list-items', '.js-list-value');
+	FAQ();
+	Notification();
+	Switcher();
+	Registration();
+	CopyReferralLink();
+
+	FixedMessage("10%", "PRO10", "To receive 10% on top of your investment in STARTER");	
+});
+
+$(document).scroll(function() {
+	ShowScroll('.js-fixed-header', 250);
+});
+
+$(window).resize(function() {
+	UpdateSliders();
+	ShowScroll('.js-fixed-header', 250);
+});
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+function Registration()
+{
+	$('.js-register').click(function() {
+		var email = $('.input-on-main').val();
+		if(isEmail(email)){
+		//$.post( "/signup", { email: email, jquery: 'JPOST' } );
+		$.post( "/signup", { email: email, jquery: 'JPOST' })
+		.done(function( data ) {
+			if( data == "complete" ){
+				$('.js-register-step-1').hide();
+				$('.js-register-step-2').fadeIn(400)
+			}else{
+				$('.start-now').html('<font color="red">E-Mail already registrated</font>');
+			}
+		});
+		}else{
+			$('.start-now').html('<font color="red">Inserez un E-Mail Valide SVP.</font>');
+		}
+;
+	});
+}
+
+function Switcher()
+{
+	$('.js-switcher').click(function() 
+	{
+		if ($(this).hasClass('on'))
+		{
+			$(this).removeClass('on');
+			$(this).addClass('off');
+			$(this).find('input').val(0);
+		}		
+		else if ($(this).hasClass('off'))
+		{
+			$(this).removeClass('off');
+			$(this).addClass('on');
+			$(this).find('input').val(1);
+		}
+	});
+}
+
+function Notification()
+{
+	$('.js-notification-item').click(function(e) {	
+		//e.stopPropagation();
+		$('.notification-wrap').slideDown(800);
+	});
+	
+	$('.js-notification.active').click(function() {
+		$('.you-have').hide();	
+		$('.notification_type').html('Empty :(');
+		$('.notification_text').html('There is no new notifications to display');
+		$('notification_image').attr('src','/template/images/sucess.png');
+		var list = $('.js-notification-list');
+
+		if (list.is(':visible'))
+			list.slideUp(100);
+		else
+			list.slideDown(300);
+	});
+}
+function PopupMessageError(title, msg, type){
+	$('.you-have').show();
+	$('.you-have').html('New Notification');
+	$('.notification-wrap').slideDown(800);
+	$('.notification_type').html(title);
+	$('.notification_text').html(msg);
+	if(type == 0){
+		$('notification_image').attr('src','/template/images/sucess.png');
+	}
+}
+function FAQ()
+{
+	$('.js-ask').click(function() {
+		var answer = $(this).parents('.js-wrap').find('.js-answer');
+		
+		if (answer.is(':visible'))
+			answer.slideUp(300);
+		else
+			answer.slideDown(300);
+	});
+}
+
+function AwaitAnim()
+{
+	setInterval(function(){
+		var current = parseInt($('.js-await-animation').attr('data-current'));
+		var next = current + 1;
+
+		if (next > $('.js-await-animation > *').length-1)
+		{
+			next = 0;
+		}
+		
+		$('.js-await-animation').attr('data-current', next);
+
+		$('.js-await-animation > *').removeClass('active');
+		$('.js-await-animation > *').eq(next).addClass('active');
+	}, 300);		
+}
+
+function CopyReferralLink()
+{
+	$('.js-copy-referral').click(function() {
+		var text = $('#js-referral').val();
+		CopyText(text);
+	});
+}
+
+function CopySendAddress()
+{
+	$('.js-copy-send-address').click(function() {
+		var text = $('#js-send-address').text();
+		CopyText(text);
+	});
+}
+
+function CopySendValue()
+{
+	$('.js-copy-send-value').click(function() {
+		var text = $('#js-send-value').text();
+		CopyText(text);
+	});
+}
+
+function CopyText(text)
+{
+	// Create a dummy input to copy the string array inside it
+	var dummy = document.createElement("textarea");
+
+	// Add it to the document
+	document.body.appendChild(dummy);
+
+	// Set its ID
+	dummy.setAttribute("id", "dummy_id");
+
+	// Output the array into it
+	$('#dummy_id').text(text);
+
+	// Select it
+	dummy.select();
+
+	// Copy its contents
+	document.execCommand("copy");
+
+	// Remove it as its not needed anymore
+	document.body.removeChild(dummy);
+}
+
+function SelectWithdrawWallet()
+{	
+	$('.js-wallets-list > *').click(function() {
+		$('.js-wallets-list .select').removeClass('active');
+		$(this).find('.select').addClass('active');
+		
+		var coinClass = $(this).attr('class');
+		
+		var baseClass = $('.js-deposit-change-icon').attr('data-base-class');
+		$('.js-deposit-change-icon').attr('class', baseClass).addClass(coinClass);
+	});
+}
+
+function List(wrap, calls, list, values)
+{
+	var list_dom;
+			
+	$(calls).click(function() 
+	{	
+		if ($(calls).hasClass('js-list'))
+			list_dom = $(this).find(list);
+		else
+			list_dom = $(this).parents('.js-list').find(list);
+	
+		if (!list_dom.is(':visible'))
+			list_dom.stop(true, true).fadeIn({ duration: 300, queue: false }).css('display', 'none').slideDown(300);
+	});
+	
+	$(list + ' > *').click(function() 
+	{
+		$(this).parents(wrap).find(values).text($(this).text());
+		
+		list_dom.stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+	});
+	
+	$(document).click(function(e) {
+		if (!$(e.target).hasClass(wrap.replace(".", "")) && $(e.target).parents(wrap).length == 0 && $(e.target).parents(list).length == 0) 
+		{
+			if (list_dom)
+				list_dom.stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+		}
+	});
+}
+
+function WithdrawChoiseCoin()
+{
+	$('.js-coin-choice-show').click(function() {
+		if (!$('.js-coin-choice-list').is(':visible'))
+			$('.js-coin-choice-list').stop(true, true).fadeIn({ duration: 300, queue: false }).css('display', 'none').slideDown(300);
+	});
+	
+	$('.js-coin-choice-list > *').click(function() {
+		var addedClass = $(this).attr('class');
+		var baseClass = $('.js-coin-choice-show').attr('data-base-class');
+		var coinName = $(this).find('span').text();
+		$('.js-coin-choice-icon').attr('class', baseClass + " " + addedClass);
+		
+		$('.js-balance-icon').attr('class', 'balance js-balance-icon ' + addedClass);
+		$('.js-coin-choice-name').text(coinName);
+		$('.js-coin-choice-list').stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+	});
+	
+	$(document).click(function(e) {
+		if (!$(e.target).hasClass("js-coin-choice") && $(e.target).parents('.js-coin-choice').length == 0 && $(e.target).parents(".js-coin-choice-list").length == 0) 
+		{
+			$('.js-coin-choice-list').stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+		}
+	});
+}
+
+function DashboardWalletsSlider()
+{
+	var sliderList = "js-wallets-slide";
+	var onDisplay = 1;
+	var count = 3;
+		
+	var currentShift = $('.'+sliderList).attr('data-current');
+	$('.'+sliderList).eq(0).css('margin-left', (currentShift * -100) + "%");
+	
+	$('.'+sliderList).parents('.js-wrap').find('.js-slide-to-left').off('click');
+	$('.'+sliderList).parents('.js-wrap').find('.js-slide-to-right').off('click');	
+	
+	$('.'+sliderList).parents('.js-wrap').find('.js-slide-to-left, .js-slide-to-right').on('click', function() 
+	{
+		var currentShift = $('.'+sliderList).attr('data-current');
+		
+		if ($(this).hasClass('js-slide-to-left'))
+			currentShift--;
+		else
+			currentShift++;
+		
+		if (currentShift >= 0 && currentShift <= count - onDisplay)
+		{
+			$('.'+sliderList).eq(0).css('margin-left', (currentShift * -100) + "%");			
+			$('.'+sliderList).attr('data-current', currentShift);
+		}			
+	});
+}
+
+function DashboardTime()
+{
+	setInterval(function() {
+		var time = moment().tz('Australia/Sydney').format('HH : mm : ss');
+		$('#time').text(time);
+	}, 1000); 
+}
+
+function Tabs(tabClassName)
+{
+    $(tabClassName+'-control').click(function() {
+        var index = $(this).index();
+        
+        $(tabClassName+'-control, '+tabClassName).each(function() {
+            $(this).removeClass('active');
+            
+            if ($(this).index() == index)
+                $(this).addClass('active');
+        });	
+
+        $(tabClassName).hide();
+        $(tabClassName).eq(index).addClass('active');
+        $(tabClassName).eq(index).fadeIn(300);
+    });
+}
+
+function FixedMessage(percent, code, text)
+{
+	var popup = $('#js-code-popup');
+	popup.stop();
+	popup.hide();
+	
+	popup.find('.code-popup-percent').text(percent);
+	popup.find('.code').text(code);
+	popup.find('.text').text(text);
+	
+	popup.show(400);
+	setTimeout(function() {
+		popup.hide(400);
+	}, 4000);
+	
+	popup.find('.js-close').click(function() {
+		popup.hide(400);
+	});
+}
+
+function ScrollToHash()
+{
+	// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top - 80
+        }, 700, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+}
+
+function PersonSlider()
+{
+	//Вроде нужно только на 2 фотографии, поэтому фейк
+	$('.js-person-slider-left').click(function() {
+		
+		$(this).parents('.js-wrap').find('.js-person-slider > *').eq(1).hide(300);
+		$(this).parents('.js-wrap').find('.js-person-slider > *').eq(0).show(300);
+	});
+	
+	$('.js-person-slider-right').click(function() {
+		
+		$(this).parents('.js-wrap').find('.js-person-slider > *').eq(0).hide(300);
+		$(this).parents('.js-wrap').find('.js-person-slider > *').eq(1).show(300);
+	});
+}
+
+function ShowScroll(elem, distance)
+{
+	var elemClone = $(elem).clone(true, true);	
+	elemClone.addClass('js-clone');
+	elemClone.addClass('fixed');
+	elemClone.hide();
+	elemClone.css("opacity", "0");
+	
+	var scroll = $(window).scrollTop();	
+	if (scroll > distance)
+	{
+		if ($(elem+'.js-clone').length == 0)
+		{
+			$('body').append(elemClone);
+			elemClone.show();
+			elemClone.css("opacity", "1");
+		}
+		else
+		{
+			$(elem+'.js-clone').show();
+			$(elem+'.js-clone').css("opacity", "1");
+		}
+	}		
+	else
+	{		
+		var hidden = $(elem+'.js-clone').css('opacity');
+		
+		if ($(elem+'.js-clone').length != 0 && hidden != 0)
+		{
+			$(elem+'.js-clone').css("opacity", "0");
+		}
+		
+		if (hidden == 0)
+		{
+			$(elem+'.js-clone').remove();
+		}
+	}
+
+	$(elem).mousemove(function() {
+		var hidden = $(elem+'.js-clone').css('opacity');
+		
+		if (hidden == 0)
+			$(elem+'.js-clone').remove();
+	});
+}
+
+
+function FactorValue(currentFactor, minFactor, maxFactor, minValue,  maxValue)
+{
+	if (currentFactor <= minFactor)
+		return currentFactor;
+	else if (currentFactor >= maxFactor)
+		return currentFactor;
+
+	var ratio = (currentFactor - minFactor) / (maxFactor - minFactor);
+	return ((maxValue - minValue) * ratio) + minValue;
+}
+
+function Support()
+{
+	Hide();
+	
+	function Show(target)
+	{
+		$('.support-wrap').css('opacity', '1');
+		$('.js-support-wrap > *').hide();
+		$(target).show();
+		$('.js-support-wrap').fadeIn(400);
+		$('.js-support').css('right', '0');
+	}
+	
+	function Hide()
+	{
+		var slideRightWidth = $('.js-support').width() + 40;
+
+		$('.js-support').css('right', -slideRightWidth);
+		$('.js-support-wrap').fadeOut(400);
+		
+		$('.js-support-complate').css('opacity', '0');
+		$('.js-support-complate').hide();
+	}
+	
+	function ShowComplete()
+	{		
+		$('.js-support-complate').show();
+		$('.js-support-complate').css('opacity', '1');
+	}
+	
+	function Send()
+	{
+		if ($('.js-input-email').val() == "")
+			return;
+		
+		if ($('.js-input-subject').val() == "")
+			return;
+		
+		if ($('.js-input-text').val() == "")
+			return;
+		var email = $('.input-on-main').val();
+		if(isEmail(email)){
+			$.post( "/", { mail: $('.js-input-email').val(), subject: $('.js-input-subject').val(), message: $('.js-input-text').val()} );
+			ShowComplete();
+		}else{
+			return;
+		}
+	}
+	
+	$('.js-support-show').click(function() {
+		var target = $(this).attr('data-target');
+		console.log(target);
+		Show(target);
+	});
+	
+	$('.js-support-send').click(function() {
+		Send();
+	});
+	
+	$('.js-support-wrap').click(function(e) {
+		if (e.target !== this)
+			return;
+		
+		Hide();
+	});
+	
+	$('.js-support-close').click(function() {
+		Hide();
+	});
+}
+
+function InitModal()
+{
+	$('.js-close-modal').click(function() {
+		$(this).parents('.js-modal').fadeOut(500);
+	});
+	
+	$('.js-open-modal').click(function() {
+		var modal = $($(this).attr('data-modal'));
+		modal.fadeIn(500);
+	});
+	
+	$('.js-close-modal-no-child').click(function(e) {
+		if (e.target !== this)
+			return;
+		
+		if ($(this).hasClass('js-modal'))
+			$(this).fadeOut(500);
+		
+		$(this).parents('.js-modal').fadeOut(500);
+	});
+}
+
+function RangeSlider()
+{
+	function Update(to_input = true)
+	{
+		var min = $('#js-main-amount-slider').attr('min');
+		var max = $('#js-main-amount-slider').attr('max');
+		
+		var val = $('#js-selected-amount-input').val();
+		
+		
+		
+		var price = $('#js-main-amount-slider').attr('coinprice');
+		var AmountUSD = (price / 1.00000000) * val;
+		var percent = FactorValue($('#js-main-amount-slider').val(), min, max, 0, 100);
+		if(AmountUSD > 25 && AmountUSD < 7500){
+			var profitPercent = 7;
+		}else if(AmountUSD > 7500 && AmountUSD < 35000){
+			var profitPercent = 8;
+		}else if(AmountUSD > 35000){
+			var profitPercent = 10;
+		}else{
+			var profitPercent = 7;
+		}
+		//Формулы профита
+		var dailyProfit = val/100*profitPercent;
+		var totalProfit = (val/100*profitPercent) * percent;
+
+		//Разные данные
+		$('#js-main-amount-slider-min').text(min);
+		$('#js-main-amount-slider-max').text(max);
+		$('#js-main-percent').css('width', percent+"%");
+		$('#js-main-days').text(percent + " Days");
+
+		
+		//Профиты
+		$('#js-daily-profit').text(dailyProfit.toFixed(8));
+		$('#js-total-profit').text(totalProfit.toFixed(8));
+	}
+	
+	Update();
+	
+	$('#js-main-amount-slider').on('input change', Update);
+	$('#js-selected-amount-input').on('input change', Update);
+	
+	$('#js-selected-amount').on('input change', function() {
+		$('#js-main-amount-slider').val($(this).val());
+		Update(true);
+	});
+}
+
+function UpdateSliders()
+{
+	if ($(window).width() > 800)
+	{
+		Slider('js-partners-list', 'js-partners-list-wrap', 3, 0);
+		Slider('js-other-sites-list', 'js-other-sites-list-wrap', 4, 0);
+	}		
+	else if ($(window).width() > 600)
+	{
+		Slider('js-partners-list', 'js-partners-list-wrap', 3, 0);
+		Slider('js-other-sites-list', 'js-other-sites-list-wrap', 3, 0);
+	}		
+	else if ($(window).width() > 400)
+	{
+		Slider('js-partners-list', 'js-partners-list-wrap', 2, 0);
+		Slider('js-other-sites-list', 'js-other-sites-list-wrap', 2, 0);
+	}
+	else
+	{
+		Slider('js-partners-list', 'js-partners-list-wrap', 1, 0);
+		Slider('js-other-sites-list', 'js-other-sites-list-wrap', 1, 0);
+	}
+}
+
+function SwitcherCurrencyCalc()
+{
+	$(document).click(function(e) {
+		if (!$(e.target).hasClass("js-change-currency-main-wrap") && $(e.target).parents('.js-change-currency-main-wrap').length == 0 && $(e.target).parents(".js-change-currency-main-list").length == 0) 
+		{
+			$('.js-change-currency-main').removeClass('active');
+			$('.js-change-currency-main-list').stop(true, true).slideUp(300);
+		}
+	});
+	
+	$('.js-change-currency-main-list-items > *').click(function() {
+		$('.js-change-currency-main').removeClass('active');
+		var list = $('.js-change-currency-main-list');
+		list.stop(true, true).slideUp(300);
+		
+		var baseClass = $('#js-change-coin-icon').attr('data-base-class');
+		var changedClass = $(this).attr('class');
+		var price = $(this).attr('price');
+		var coinName = $(this).find('span').text();
+		
+		$('#js-change-coin-icon').attr('class', baseClass);
+		$('#js-selected-amount-input').attr('class', changedClass);
+		$('#js-main-amount-slider').attr('coinprice', price);
+		
+		$('.js-snake-main').attr('class', $('.js-snake-main').attr('data-base-class'));
+		$('.js-snake-main').addClass(changedClass);
+		
+		$('.js-profit-icon').attr('class', "coin js-profit-icon " +changedClass);
+
+		$('#js-change-coin-icon, #js-selected-amount, .js-snake-main').addClass(changedClass);
+		$('#js-change-coin-icon').text(coinName);
+	});
+	
+	$('.js-change-currency-main-wrap').click(function() {
+		var list = $('.js-change-currency-main-list');
+		
+		if (list.is(':visible'))
+		{
+			$('.js-change-currency-main').removeClass('active');
+			list.stop(true, true).slideUp(300);
+		}
+		else
+		{
+			$('.js-change-currency-main').addClass('active');
+			list.stop(true, true).slideDown(300);
+		}
+	});
+}
+
+function SwitcherHeaderCoinsDetails()
+{
+	$(document).click(function(e) {
+		if (!$(e.target).hasClass("js-coins-prices") && $(e.target).parents('.js-coins-prices').length == 0 && $(e.target).parents(".js-coins-details").length == 0) 
+		{
+			$('.js-show-coins-details').removeClass('active');
+			$('.js-coins-details').stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+		}
+	});
+	
+	$('.js-show-coins-details').click(function() {
+		var list = $('.js-coins-details');
+		
+		if (list.is(':visible'))
+		{
+			$(this).removeClass('active');
+			list.stop(true, true).fadeOut({ duration: 300, queue: false }).slideUp(300);
+		}
+		else
+		{
+			$(this).addClass('active');
+			list.stop(true, true).fadeIn({ duration: 300, queue: false }).css('display', 'none').slideDown(300);
+		}
+	});
+}
+
+function Slider(sliderList, sliderListWrap, onDisplay, toElem = -1)
+{
+	var count = $('.'+sliderList+' > *').length;
+	//console.log("count: " + count);
+	
+	var wrapWidth = $('.'+sliderListWrap+'').parents('section').width();
+	//console.log("wrapWidth: " + wrapWidth);
+	
+	var elemWidth = wrapWidth / onDisplay;
+	//console.log("elemWidth: " + elemWidth);
+	
+	var sliderWidth = elemWidth * count + 20;
+	//console.log("sliderWidth: " + sliderWidth);
+	
+
+	$('.'+sliderList+' > *').width(elemWidth);
+	
+	$('.'+sliderList).width(sliderWidth);
+	
+	if (toElem != -1)
+		$('.'+sliderList).attr('data-current', toElem);
+		
+	var currentShift = $('.'+sliderList).attr('data-current');
+	$('.'+sliderList).eq(0).css('margin-left', currentShift * -elemWidth);
+	
+	
+	$('.'+sliderList+' > *').each(function(index) {
+		if (index < currentShift || index >= currentShift + onDisplay)
+			$('.'+sliderList+' > *').eq(index).css('opacity', '0');
+		else
+			$('.'+sliderList+' > *').eq(index).css('opacity', '1');
+	});
+	
+	$('.'+sliderListWrap).width(wrapWidth);
+	
+	$('.' + sliderListWrap + ' .js-slide-to-left, ' + '.' + sliderListWrap + ' .js-slide-to-right').off('click');
+	$('.' + sliderListWrap + ' .js-slide-to-left, ' + '.' + sliderListWrap + ' .js-slide-to-right').on('click', function() 
+	{
+		var currentShift = $('.'+sliderList).attr('data-current');
+		
+		if ($(this).hasClass('js-slide-to-left'))
+			currentShift--;
+		else
+			currentShift++;
+		
+		if (currentShift >= 0 && currentShift <= count - onDisplay)
+		{
+			$('.'+sliderList).eq(0).css('margin-left', currentShift * -elemWidth);
+			
+			$('.'+sliderList).attr('data-current', currentShift);
+			
+			$('.'+sliderList+' > *').each(function(index) {
+				if (index < currentShift || index >= currentShift + onDisplay)
+					$('.'+sliderList+' > *').eq(index).css('opacity', '0');
+				else
+					$('.'+sliderList+' > *').eq(index).css('opacity', '1');
+			});
+		}			
+		
+		
+	});
+}

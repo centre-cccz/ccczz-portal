@@ -1,0 +1,20 @@
+{
+    "pricing_tiers": [
+        {
+            "code": "PLEIN",
+            "label": "Plein",
+            "amount": null,
+            "notes": "À définir par DF"
+        },
+        {
+            "code": "REDUIT",
+            "label": "Réduit",
+            "amount": null,
+            "notes": "À définir par DF"
+        }
+    ],
+    "policies": {
+        "refund": "Politique de remboursement à définir",
+        "accessibility": "Informations accessibilité à compléter"
+    }
+}

@@ -1,0 +1,72 @@
+# Dockerfile for Event Queue Worker Service
+# Separated from main API for independent scaling and fault isolation
+
+# ============================================================================
+# STAGE 1: Build Dependencies
+# ============================================================================
+FROM node:18-alpine AS deps
+WORKDIR /app
+
+# Install security updates
+RUN apk add --no-cache --update \
+    dumb-init \
+    curl \
+    ca-certificates
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --production && \
+    npm cache clean --force
+
+# ============================================================================
+# STAGE 2: Builder
+# ============================================================================
+FROM node:18-alpine AS builder
+WORKDIR /app
+
+# Copy dependencies from stage 1
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy source code
+COPY . .
+
+# Build (if needed for your setup)
+RUN npm run build || true && \
+    npm prune --production
+
+# ============================================================================
+# STAGE 3: Runtime (Production)
+# ============================================================================
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+# Install runtime dependencies
+RUN apk add --no-cache --update \
+    dumb-init \
+    curl \
+    ca-certificates
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+# Copy dependencies from builder
+COPY --from=builder --chown=nodejs:nodejs /app/node_modules ./node_modules
+
+# Copy application code
+COPY --chown=nodejs:nodejs . .
+
+# Switch to non-root user
+USER nodejs
+
+# Health check endpoint
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:3001/health || exit 1
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT [ "/sbin/dumb-init", "--" ]
+
+# Start the event worker
+CMD [ "node", "services/workers/eventWorker.js" ]

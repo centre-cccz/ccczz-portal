@@ -1,0 +1,971 @@
+@media screen and (max-width: 1715px) 
+{
+	/* dashboard */
+	.dashboard section {width: 86%; margin-left: 105px;}
+	.profile-info .total span {margin-left: 15px; margin-right: 15px;}
+	.profile-info .total b {margin-left: 15px;}
+	.profile-info .total {width: auto;}
+	.coins-info .sell .coin span {margin-right: 12px;}
+	.coins-info .sell .change {margin-right: 12px;}
+	.coins-info > div {width: auto;}
+	.coins-info {flex-wrap: wrap;}
+	.coins-info .servertime span {margin-left: 12px; margin-right: 12px;}
+	.coins-info .sell .point {margin-right: 12px;}
+	.profile-info .name-login {width: auto;}
+	.profile-info .name-login .name span {margin-right: 10px;}
+	.profile-info .name-login .close {margin-right: 12px;}
+	.balance-deposit .lines .amount {font-size: 20px; margin-right: 0;}
+	.balance-deposit .lines .coin b {font-size: 18px;}
+	.balance-deposit .lines .actions .pay-in {margin-left: 0;}
+	.balance-deposit .lines > div {padding: 0 27px;}
+	.deposit .next-payment {padding-left: 20px; margin-left: auto;}
+	.deposit .next-payment span {font-size: 16px;}
+	.dash-header {background-size: 100% 100%;}
+	.deposit span {font-size: 12px;}
+	.deposit .next {position: absolute; right: 25px; top: 12px;}
+	.deposit {position: relative;}
+	.title-h3 .make {margin-right: 0;}
+	.exchange-referral .list .details a {font-size: 12px;}
+	.exchange-referral .list .details span {font-size: 12px;}
+	.exchange-referral .list .details .tx {margin-left: 0; margin-top: 5px;}
+	.exchange-referral .list .details {flex-direction: column; align-items: flex-start;}
+	.exchange-referral .investor-info .level {margin: 32px 0;}
+	.exchange-referral .investor-info .stick {margin-left: 15px; margin-right: 15px;}
+	.exchange-referral .investor-info .see-ref {width: 27px; height: 17px; flex-shrink: 0; margin: 20px 0;}
+	.exchange-referral .investor-info .mail {margin-left: auto;}
+	.investor-info > div {flex-wrap: wrap;}
+	.withdraw-history .operation .amount {width: auto;}
+	.withdraw-history .operation .id {margin-left: auto; width: 300px;}
+	.withdraw-history .names > div:nth-child(5) {margin-left: auto; width: 300px;}
+	.profile-info {flex-wrap: wrap; justify-content: space-between;}
+	.profile-info .bell {margin: 7px 7px 0 auto;}
+	.investor-info .investor {margin-right: 0;}
+	.exchange-referral .investor-info .see-ref {min-width: 180px; margin-left: auto; padding: 20px 20px 0 0; margin-top: 0;}
+	.exchange-referral .investor-info .stick {display: none;}
+	.exchange-referral .investor-info .mail {margin-right: 20px;}
+	.exchange-referral .investor-info .see-ref {justify-content: flex-end;}
+	
+	
+	/* withdraw */
+	.with-from-bal .coin-choice .coin {margin-left: 40px;}
+	.arrow-choice {margin-left: 20px; margin-right: 20px;}
+	.with-from-bal .crypto-to > img {margin-right: 20px;}
+	.with-from-bal .crypto-to .input {margin-right: 20px; width: auto;}
+	.with-from-bal .coin-choice {width: auto;}
+	.you-withdraw {padding-left: 15px; padding-right: 15px;}
+	.canceling-plan .input .with-arrow .plan-list {width: auto;}
+	.canceling-plan .input .with-arrow {width: 200px; margin-right: 20px;}
+	.canceling-plan p {width: auto; width: 200px; flex-shrink: 0; margin-left: 20px; margin-bottom: 0;}
+	.canceling-plan .comission span {font-size: 14px;}
+	.canceling-plan .comission b {font-size: 14px;}
+	.canceling-plan .comission {margin-left: 20px; margin-right: 20px;}
+	.canceling-plan .input {margin-right: 0;}
+	.canceling-plan .input.wide {width: auto;}
+	.you-withdraw b {font-size: 18px;}
+	.canceling-plan .plan {padding-left: 15px;}
+	.with-from-bal .balance {margin-right: 30px; margin-left: 20px;}
+	.with-from-bal .info-reinvest p {margin-left: 25px; margin-right: 25px;}
+	.confirmation {flex-wrap: wrap; justify-content: center;}
+	.confirmation .tx {margin-top: 30px;}
+	
+	
+	/* my-deposits */
+	.my-deposits .deposit .next {position: relative; top: 0; right: 0; margin-left: 20px; margin-right: 20px; white-space: normal;}
+	.my-deposits .deposit .next-payment .orange span {padding-right: 15px;}
+	.my-deposits .deposit .next-payment span {font-size: 14px;}
+	.my-deposits .info .deposit {padding-left: 0;}
+	.earnings > div {width: 100%;}
+	.earnings {flex-direction: column;}
+	
+	
+	/* login */
+	
+	
+	/* make deposit */
+	.calculator-profits b {font-size: 20px;}
+	.calculator-profits .info {padding-left: 15px;}
+	.calculator-profits > div {padding-left: 15px; padding-right: 15px;}
+	.calc-amount {padding-left: 15px; margin-right: 30px; margin-left: 30px;}
+	.calculator-profits .plan {margin: 0 30px;}
+	.calculator-profits .percent > div {padding: 0 18px;}
+	.set-amount .calculator .calc-amount {margin-left: 0;}
+	.make-deposit-2 .qr-code .code {margin-right: 25px;}
+	.make-deposit-2 {padding-left: 30px; padding-right: 30px;}
+	.make-deposit-2 .send {padding-left: 40px; margin-left: 40px;}
+	
+	
+	/* referrals */
+	.referrals .referral-link p {margin-left: 25px;}
+	.referral-link .my-unline b {font-size: 16px;}
+	.referral-link .input .link {margin-right: 15px;}
+	.referrals .investor-info .stick {display: none;}
+	.referrals .investor-info > div {padding: 30px;}
+	.referrals .ref-investors .see-ref {padding-top: 30px; padding-bottom: 30px; margin-left: -30px; margin-bottom: -30px;}
+	
+	.coins-info >*:nth-child(4) {display: none;}
+	.coins-info >*:nth-child(5) {display: none;}
+	.profile-info .bell .you-have span {display: none;}
+	.profile-info .bell.active .you-have {margin: 0 5px;}
+	
+	/* listing */
+	.crypto-listing .crypto .hidden .info .column {padding-right: 0; margin-right: 20px;}
+	.crypto-listing .crypto .hidden .info .column.two {margin-left: 20px;}
+	.crypto-listing .crypto .hidden .info .column > div {flex-direction: column;}
+	.crypto-listing .crypto .hidden .info .column span {width: auto;}
+	
+	/* exchange */
+	.ref-menu.ref-menu-exch span {margin-left: 15px; font-size: 16px;}
+	.exchanger .coin .right .amount input {width: 180px; line-height: 44px; font-size: 16px;}
+	.exchange .agree {margin-left: 25px;}
+	.exchanger .coin .left .transparent .action {font-size: 15px;}
+	.history .stick {margin-right: 15px;}
+	.history .received span {font-size: 14px;}
+	.check-transaction {margin-bottom: -100px;}
+	.check-transaction .make-deposit-3 .coin-amount {flex-wrap: wrap; margin-left: 40px;}
+	.check-transaction .make-deposit-3 .coin-amount .amount {margin: 10px 20px 10px 0;}
+	.check-transaction .make-deposit-3 .coin-amount span {margin-right: 20px;}
+	.succesful-details .pay-info {flex-direction: column;}
+	.succesful-details .pay-info > div {margin: 8px 0;}
+}
+
+@media screen and (max-width: 1435px) 
+{
+	.coins-info >*:nth-child(4) {display: block;}
+	.coins-info >*:nth-child(5) {display: flex;}	
+}
+
+@media screen and (max-width: 1260px) 
+{
+	/* main */
+	section {width: 80%;}
+	.logo-nav {flex-direction: column;}
+	nav {margin-left: 0; margin-top: 20px; justify-content: space-between;}
+	nav > * {margin-right: 0;}
+	.plan-calc .plan .info p {margin-left: 0;}
+	.plan-calc .plan .info .text-plan .daily-for {margin-left: 0;}
+	.plan-calc .plan .info .percents {margin-right: 15px;}
+	.plan-calc .plan .info .text-plan {flex-direction: column;}
+	.plan-calc .plan .info .text-plan .daily-for {margin-bottom: 10px;}
+	.plan-calc .plan .info p {text-align: center;}
+	.team .person .foto {width: 155px; height: 155px;}
+	.top-info .bonus .have-account a {margin: 0 15px;}
+	.top-info .inform p {font-size: 16px; margin-right: 15px;}
+	.top-info .bonus .input-on-main {width: 100%; margin-left: 0; margin-right: 0;}
+	.top-info .inform .coins {justify-content: center;}
+	.top-info .bonus .have-account {flex-direction: column;}
+	.top-info .bonus .have-account span {margin-left: 0;}
+	.top-info .bonus .have-account .register {margin: 30px 0 0; width: 80%;}
+	.top-info .bonus .purple-text {padding-right: 25px;}
+	.plan-calc .plan .info .text-plan .daily-for {margin-bottom: 20px;}
+	.plan-calc .calculator .next-days .days {width: 100%;}
+	.plan-calc .calculator .next-days {flex-direction: column;;}
+	.plan-calc .calculator .next-days > span {display: block; margin-bottom: 17px;}
+	.plan-calc .calculator .yellow {flex-direction: column; height: auto;}
+	.plan-calc .calculator .yellow > div {margin: 25px;}
+	.plan-calc .calculator .yellow > div:first-child {margin-bottom: 0;}
+	.plan-calc .calculator .calculate {flex-direction: column;}
+	.plan-calc .calculator .calculate .line {width: 100%;}
+	.plan-calc .calculator .calculate .amount {width: 100%; box-sizing: border-box; text-align: right; margin-top: 15px; padding-right: 0;}
+	.plan-calc .calculator .levels {flex-direction: column;}
+	.plan-calc .calculator .levels > div {width: 100%; margin: 0 0 7px 0;}
+	.plan-calc .calculator .levels span {width: auto; text-align: center; margin-bottom: 24px;}
+	.statistic-7-days .coins .coin .amount {font-size: 20px;}
+	.statistic-7-days .coins .coin {padding: 20px; display: flex; justify-content: center; flex-direction: column;}
+	.price .see-more {margin: 0 21px;}
+	.price {order: 0; margin-left: 0; width: 100%; margin-bottom: 25px; width: auto; margin: 0 20% 25px;}
+	a.social {order: 1;}
+	.lang-selector {margin-left: 0; margin-right: 7px;}
+	header .top-links {justify-content: center;}
+	.logo {background-position-x: center; width: 100%; margin: 20px 0;}
+	header {background-size: auto 100%;}
+	.plan-calc .calculator .currency .hide-coins img {margin: 8%;}
+	.top-info .bonus .have-account .register {justify-content: center;}
+	.top-info .bonus .have-account .register img {margin-left: 0;}
+	.plan-calc .calculator .next-days .days > div {box-sizing: content-box;}
+	.statistic-7-days .coins .amount {font-size: 20px;}
+	.statistic-7-days .coins > div {padding: 3%; flex-direction: column; display: flex; align-items: center; justify-content: center;}
+	.partners-list img {height: auto; width: 80%;}
+	.other-sites img {width: 80%;}
+	.other-sites .hidden .raiting {margin: 55px 0 5px 0;}
+	.reserve {justify-content: space-around;}
+	.reserve .span {font-size: 18px; margin-right: 15px;}
+	.reserve .amount {white-space: nowrap; z-index: 11;}
+	.reserve .icon {margin-left: 20px;}
+	.reserve > div {width: 45%;}
+	.footer .footer-menu {margin-right: 30px;}
+	.footer .contacts > div:first-child span {white-space: nowrap;}
+	.team .person .arrows {margin-right: -40px;}	
+	.support {width: 34%;}
+	
+	
+	/* dashboard */
+	.profile-info .name-login .name span {margin-left: 10px;}
+	.profile-info {flex-direction: column;}
+	.profile-info .total {margin-right: 0; width: 100%; margin-bottom: 10px;}
+	.profile-info .name-login {margin: 15px 0 20px;}
+	.profile-info {padding: 7px 15px 15px;}
+	.coins-info > img {display: none;}
+	.coins-info > div {margin-bottom: 20px;}
+	.coins-info .servertime {margin-top: 0;}
+	.balance-deposit .lines .coin {width: 40%; flex-shrink: 0;}
+	.balance-deposit .lines .coin b {font-size: 15px;}
+	.balance-deposit .lines .amount {font-size: 15px;}
+	.balance-deposit .lines .actions .pay-in {margin-right: 10px;}
+	.balance-deposit .lines .amount {width: 30%; flex-shrink: 0;}
+	.balance-deposit .lines > div > img {display: none;}
+	.balance-deposit .lines .amount {margin: 10px;}
+	.balance-deposit .lines .actions {margin-left: auto;}
+	.deposit {flex-wrap: wrap; padding: 25px;}
+	.deposit .next {position: relative; top: 0; right: 0;}
+	.deposit .next-payment {width: 100%; margin: 20px 0 0;}
+	.deposit .next-payment .orange {margin-left: auto;}
+	.exchange-referral .list .operation .i-send b {font-size: 13px;}
+	.exchange-referral .list .operation .i-send p {font-size: 13px;}
+	.exchange-referral .list .operation > img {margin: 0 15px;}
+	.exchange-referral .list .operation .icoins {margin: 20px 15px;}
+	.exchange-referral .investor-info > div {padding: 0 20px;}
+	.exchange-referral .investor-info .mail b {font-size: 11px;}
+	.exchange-referral .investor-info .investor b {font-size: 12px; font-weight: bold;}
+	.exchange-referral .investor-info .level {margin: 25px 0; padding-left: 10px; padding-right: 10px;}
+	.exchange-referral .investor-info .stick {display: none;}
+	.exchange-referral .investor-info .see-ref {margin-left: 0;}
+	.withdraw-history .operation .date {width: auto;}
+	.withdraw-history .operation .type {width: auto; margin: 0 15px;}
+	.withdraw-history .operation .check {width: auto;}
+	.withdraw-history .operation .check > div {margin: 25px;}
+	.withdraw-history .names > div:nth-child(1) {display: none;}
+	.withdraw-history .names {text-align: center;}
+	.withdraw-history .names > div {width: auto !important;}
+	.withdraw-history .names > div:nth-child(5) {margin-left: 0;}
+	.withdraw-history .names {justify-content: space-around;}
+	.withdraw-history .operation .id {text-align: center; width: 35%;}
+	.withdraw-history .operation * {font-size: 13px !important;}
+	.exchange-referral .investor-info .investor {margin-right: 15px;}
+	.exchange-referral .investor-info .mail > div {margin-right: 20px;}	
+	.exchange-referral .investor-info .mail {margin-right: 0;}
+	.exchange-referral .investor-info .see-ref {justify-content: flex-start; padding-left: 23px; margin-left: -20px;}
+	.coins-info >*:nth-child(4) {display: none;}
+	
+	/* withdraw */
+	.with-from-bal .balance b {font-size: 17px;}
+	.with-from-bal .balance {padding: 10px 15px;}
+	.with-from-bal .crypto-to > img {display: none;}
+	.with-from-bal .balance span {display: none;}
+	.canceling-plan .plan {flex-wrap: wrap; justify-content: space-between; padding-top: 30px;}
+	.canceling-plan .input.wide {width: 31%;}
+	.calc-amount {width: 31%;}
+	.canceling-plan p {width: 31%; margin-left: 0;}
+	.canceling-plan .input .with-arrow {margin-right: 0; width: auto;}
+	.canceling-plan .comission {margin: 0;}
+	.you-withdraw {background: none;}
+	.you-withdraw b {font-size: 21px;}
+	.you-withdraw {margin-left: 0; margin-right: auto;}
+	.withdraw-button {margin-left: auto;}	
+	.with-from-bal .info-reinvest {padding-top: 15px; padding-bottom: 15px;}
+	.confirmation .inform {margin: 0 25px 30px 10%;}
+	.confirmation .withdraw-button {margin: 0 0 0 0;}
+	
+	
+	/* my-deposits */
+	.my-deposits .details span {text-align: center; width: 30%; font-size: 12px;}
+	.my-deposits .info .deposit .next-payment {margin-top: 25px;}
+	
+	
+	/* login */
+	.login .right .final.final-reg {justify-content: space-between;}
+	
+	
+	/* make deposit */
+	.select-payments .payments b {font-size: 18px;}
+	.select-payments .payments > div {padding: 20px;}
+	.select-payments .payments img {margin-right: 20px;}
+	.calculator-profits .plan b {font-size: 17px;}
+	.calculator-profits > div {flex-wrap: wrap; padding: 30px;}
+	.calculator-profits .next-days {width: 50%;}
+	.calculator-profits .next-days .days > div {width: 20%;}
+	.calc-amount {background: none;}
+	.calculator-profits .info {width: 50%; display: flex; justify-content: space-between; padding-left: 0;}
+	.calculator-profits .info > * {width: 48%;}
+	.calc-amount {margin-left: 0; padding-left: 0; margin-right: 0; width: 45%;}
+	.set-amount .info-calc b {font-size: 22px;}
+	.set-amount .calculator .calc-amount {width: auto;}
+	.select-payments .payments span {white-space: nowrap; font-size: 12px;}
+	.set-amount .buttons {margin-top: 50px;}
+	.make-deposit-2 {flex-wrap: wrap; padding: 40px;}
+	.make-deposit-2 .send {margin-left: auto;}
+	.make-deposit-2 .qr-code {width: 40%;}
+	
+	
+	/* settings */
+	.wallet-account > div {width: 32.5%; padding-left: 25px;}
+	.wallet-account img {margin-right: 25px;}
+	.security .confirm-code {margin-left: 30px; margin-right: 30px;}
+	
+	
+	/* referrals */
+	.referrals .referral-link p {font-size: 12px !important;}
+	.referrals .investor-info .mail {margin-left: 0; margin-top: 25px;}
+	.referrals .investor-info .mail b {font-size: 16px;}
+	.referrals .investor-info .mail span {font-size: 12px;}
+	.referrals .ref-investors .see-ref {padding: 30px;}
+	.referrals .investor-info .investor b {font-size: 15px;}
+	.referrals .referral-link .my-unline {padding-left: 20px;}
+	.referrals .referral-link .input {width: 50%;}
+	.referrals .banner-link .link {overflow-x: scroll;}
+	
+	/* listing */
+	.crypto-listing .crypto .hidden .info .column {width: 35%;}
+	.crypto-listing .crypto .hidden .info .soc-support .socials {flex-wrap: wrap;}
+	.crypto-listing .crypto .hidden .info .soc-support .socials > * {margin-bottom: 15px;}
+	.crypto-listing .crypto .over {flex-wrap: wrap; padding: 40px 15px 0 15px;}
+	.crypto-listing .crypto .over > div {margin-bottom: 50px;}
+	.crypto-listing .crypto .over .amount-wrap {margin: 0 20px 50px 0;}
+	.crypto-listing .crypto .over .column-name {top: -20px; left: 30px; font-family: 'helvetica-neue-bold';}
+	.crypto-listing .crypto .over .column-name.second {display: block;}
+	.crypto-listing .crypto .over .gray {width: 15%}
+	.crypto-listing .crypto .over .color {display: none;}
+	.crypto-listing .crypto .over .amount-wrap.ico {margin-bottom: 25px;}
+	
+	/* exchange */
+	.ref-menu.ref-menu-exch .active > div {display: none;}
+	.ref-menu.ref-menu-exch span {text-transform: none;}
+	.exchanger {flex-direction: column;}
+	.exchanger .coin {width: 95%;}
+	.exchange {flex-wrap: wrap; justify-content: center;}
+	.exchange .account {margin: 30px 0 0; width: 100%;}
+	.history .name-column {font-size: 16px;}
+	.history .date {width: 11%;}
+	.history .date span {font-size: 14px;}
+	.history .transaction .id span {font-size: 14px;}
+	.history .transaction {width: 30%;}
+	.history .transaction .action {width: 18%;}
+	.history .stick {margin-right: 0;}
+	.history .coin span {font-size: 14px; height: 16px; padding-left: 25px;}
+	.history .received {width: 16%;}
+	.exchange {justify-content: flex-start;}
+	.output {flex-wrap: wrap;}
+	.output .link {width: 100%; margin-top: 40px;}
+	.check-transaction .make-deposit-3 {flex-wrap: wrap;}
+	.check-transaction .make-deposit-3 .buttons {margin: 15px 0 15px 40px;}
+	.check-transaction {margin-bottom: -30px;}
+}
+
+@media screen and (max-width: 991px) 
+{	
+	nav {flex-wrap: wrap; justify-content: center;}
+	nav > * {margin: 0 15px; font-size: 16px; line-height: 30px;}
+	.top-info .inform {width: 100%; margin-right: 20px;}
+	.top-info .bonus {width: 100%;}
+	.top-info .inform p {margin-top: 20px;}
+	.top-info .inform .inform-text .invest span {white-space: nowrap;}
+	.top-info .inform .inform-text {flex-direction: column; margin-right: 20px; margin-top: 35px;}
+	.top-info .inform .inform-text p {width: 100%;}
+	.top-info .inform .inform-text .invest {width: 100%;}
+	.top-info .inform .we-are {margin-top: 35px;}
+	.plan-calc .plan .info {flex-direction: column;}
+	.plan-calc .plan .info .percents {margin-right: 0; margin-bottom: 20px; justify-content: center;}
+	.plan-calc .calculator .currency .hide-coins > div {width: 49%;}
+	.main-title h2 {font-size: 28px;}
+	.roadmap-dates > div {margin: 0 5px; width: auto;}
+	.statistic-7-days .coins .amount {font-size: 16px; font-weight: bold;}
+	.statistic-7-days .coins .name {flex-direction: column; text-align: center;}
+	.statistic-7-days .coins .name span {margin-left: 0; margin-top: 10px;}
+	.footer {flex-direction: column;}
+	.footer{color: #6c226e};
+	.footer .contacts {width: 85%; margin: 35px 0 55px;}
+	.footer .footer-menu {width: 100%; margin: 40px 0 20px;}
+	.footer .footer-menu .menu {justify-content: space-around;}
+	.footer .footer-menu .menu > div {margin: 0;}
+	.footer .footer-menu .menu > div > * {font-size: 16px; text-align: center;}
+	.footer .footer-menu .copyright {text-align: center;}
+	.company {display: flex; justify-content: center; margin: 50px 0 0; flex-direction: column; align-items: center;}
+	.team {flex-wrap: wrap;}
+	.team .person {width: 47%; box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1); margin-bottom: 35px; padding-right: 78px;} 
+	header {background: linear-gradient(0deg, #3f1542 0%, #6c226e 100%);}
+	.statistic-main {background-size: auto 100%;}
+	.top-info .inform .coins {margin-left: 0;}
+	.support {width: 41%;}
+	.logo-nav-wrap.fixed {padding-bottom: 40px;}
+	
+	
+	/* dashboard */
+	.dashboard section {width: 76%;}
+	.coins-info > div {width: 100%;}
+	.coins-info .sell .coin {width: 15%; flex-shrink: 0;}
+	.coins-info .servertime {margin-top: 30px;}
+	.balance-deposit {flex-direction: column;}
+	.balance-deposit > div {width: 100%; margin-bottom: 60px;}
+	.balance-deposit > div:last-child {margin-bottom: 0;}
+	.h3-deposit {color: #8a8a8a;}
+	.balance-deposit .lines .amount {font-size: 18px;}
+	.balance-deposit .lines .coin b {font-size: 18px;}
+	.exchange-referral {flex-direction: column;}
+	.exchange-referral > div {width: 100%; margin-bottom: 60px;}
+	.exchange-referral .investor-info {margin-top: 30px;}
+	.exchange-referral .list {margin-top: 30px;}
+	.exchange-referral .investor-info .mail b {font-size: 14px;}
+	.exchange-referral .investor-info .investor b {font-weight: normal; font-size: 14px;}
+	.withdraw-history h2 {margin-top: 0; text-align: center;}
+	.withdraw-history .names > div {font-size: 16px;}
+	.withdraw-history .operation .date {margin-right: 20px;}
+	.withdraw-history .operation .type {margin-right: 20px;}
+	.title-h3 h3 {margin-left: 0;}
+	.title-h3 .arrows .right {margin-right: 5px;}
+	.exchange-referral .list .operation .i-send p {font-size: 17px;}
+	.exchange-referral .list .operation .i-send b {font-size: 16px;}
+	.exchange-referral .investor-info .mail {margin-top: 0;}
+	.exchange-referral .investor-info .see-ref {width: auto;}
+	.exchange-referral .investor-info .see-ref span {display: block; display: flex;}
+	.exchange-referral .investor-info .investor {margin-right: 15px;}
+	.exchange-referral .list .operation {justify-content: space-between; padding: 25px;}
+	.exchange-referral .list .operation .icoins {margin: 0;}
+	.withdraw-history .operation * {font-size: 11px !important;}
+	.withdraw-history .names > div:nth-child(2) {width: 12% !important;}
+	.withdraw-history .names > div:nth-child(3) {margin-left: -35px;}
+	.withdraw-history .names > div:nth-child(4) {margin-left: -35px;}
+	
+	
+	/* withdraw */
+	.with-from-bal .info-reinvest {padding: 35px 30px;}
+	.with-from-bal .info-reinvest p {margin-left: 35px;}
+	.with-from-bal .reinvest {margin-left: 20px; width: 180px; margin-left: auto; margin-bottom: 0;}
+	.with-from-bal > div {flex-wrap: wrap; padding: 30px; justify-content: space-between;}
+	.with-from-bal .coin-choice {width: 45%;}
+	.with-from-bal .balance {margin: 0; width: 45%; text-align: center; justify-content: center; box-sizing: border-box;}
+	.with-from-bal .coin-choice .coin {margin-left: 20px;}
+	.arrow-choice {margin-right: 20px;}
+	.you-withdraw {padding-top: 25px; padding-bottom: 25px;}
+	.withdraw-button {width: 50%;}
+	.you-withdraw b {font-size: 23px;}
+	.you-withdraw {margin-right: 0;}
+	.canceling-plan .plan {padding-right: 30px;}
+	.canceling-plan .input.wide {width: 48%; margin-bottom: 25px;}
+	.canceling-plan .input {margin-bottom: 25px;}
+	.calc-amount {width: 48%;}
+	.canceling-plan p {width: 48%;}
+	.you-withdraw {padding-left: 0; padding-right: 0;}
+	.canceling-plan .comission {width: 48%; box-sizing: border-box;}
+	.you-withdraw span {font-size: 12px; margin-bottom: 0;}
+	.canceling-plan .comission span {font-size: 16px;}
+	.canceling-plan .comission b {font-size: 16px;}
+	.with-from-bal .crypto-to .input {width: 45%;}
+	.confirmation > img {margin-bottom: 25px;}
+	.confirmation {padding: 52px 15px 39px 15px;}
+	.confirmation .tx {max-width: 100%; margin: 0;}
+	.confirmation .tx span {max-width: 100%;}
+	.confirmation .tx > div {max-width: 90%;}
+	
+	
+	/* my-deposits */
+	.my-deposits .details {flex-direction: column;}
+	.my-deposits .details span {width: 100%; margin: 6px 0;}
+	.my-deposits .deposit .dep-info {margin-bottom: 25px;}
+	.my-deposits .deposit .next-payment span {font-size: 12px;}
+	.my-deposits .deposit .next {margin-left: 0;}
+	.title-earn .total-earned {font-size: 14px; margin-right: 0;}
+	.title-earn h2 {font-size: 20px;}
+	.earnings img {margin-left: 20px;}
+	.earnings > div {padding-left: 20px;}
+	.earnings .amount {margin-left: 15px;}
+	.earnings span {font-size: 12px;}
+	.earnings .date {font-size: 12px;}
+	.earnings .profit b {font-size: 12px;}
+	.earnings .amount .purple span {font-size: 12px;}
+	.my-deposits .show-earnings span {font-size: 14px;}
+	
+	
+	/* login */
+	.login-wrap {display: flex; justify-content: center; flex-direction: column; align-items: center;}
+	.login {width: 80%;}
+	.login .right {margin-left: 120px;}
+	.login .right .final.final-reg {flex-direction: column;}
+	.login .right .final.final-reg .login-button {width: 100%; box-sizing: border-box;}	
+	.login .right .final .capcha {margin-left: 0; margin-top: 20px; width: 100%;}
+	.login .confirm {padding-right: 0; padding-left: 65px; width: 100%; max-width: none;}
+	.login .confirm .buttons {padding-left: 0; justify-content: space-between;}
+	.login .confirm .buttons > div {width: 48%; margin-right: 0;}
+	.login .confirm .login-button {width: 100%; box-sizing: border-box;}
+	.login .confirm .input-login {width: 100%;}
+	
+	
+	/* make deposit */
+	.select-payments .payments {justify-content: space-around;}
+	.select-payments .payments > div {width: 49%;}
+	.calculator-profits .next-days {width: 100%;}
+	.calculator-profits .percent {width: 48%; display: flex; justify-content: space-between;}
+	.calculator-profits .plan {margin: 0; width: 48%; justify-content: center; text-align: center;}
+	.calculator-profits .next-days {margin-top: 25px; margin-bottom: 25px;}
+	.next-days .days b {font-size: 18px;}
+	.calculator-profits .next-days .days > div {padding: 20px 0; height: auto;}
+	.calculator-profits .info > * {width: 100%;}
+	.calculator-profits .info {flex-direction: column; width: 46%;}
+	.calculator-profits .info > div {margin: 7px 0;}
+	.calc-amount {width: 46%;}
+	.set-amount .info-calc b {font-size: 16px; white-space: nowrap;}
+	.set-amount .calculator .calc-amount {padding: 41px 20px 43px; margin-right: 0;}
+	.set-amount .info-calc > div {padding-left: 20px; margin-right: 20px;}
+	.set-amount .calculator .calc-amount .input {width: 100%;}
+	.set-amount .buttons {justify-content: space-between;}
+	.set-amount .buttons > div {margin-right: 0; width: 48%; box-sizing: border-box;}
+	.make-deposit-2 .qr-code {width: 100%; margin-bottom: 40px;}
+	.make-deposit-2 .qr-code .code {margin-top: 0; margin-bottom: 0;}
+	.make-deposit-2 .send {background: none; width: 100%; padding-left: 0;}
+	.make-deposit-2 .send .text {text-align: left; width: 100%;}
+	.make-deposit-2 .buttons {margin-top: 25px;}
+	.make-deposit-3 .coin-amount .amount {margin-right: 20px;}
+	.make-deposit-3 .buttons .yellow {margin-left: 15px;}
+	.make-deposit-3 {flex-direction: column;}
+	.make-deposit-3 .coin-amount .amount {margin-right: 0; width: 100%; margin: 10px 0 0; text-align: center;}
+	.make-deposit-3 > div {margin-top: 25px; flex-direction: column; width: 100%;}
+	.make-deposit-3 .coin-amount .coin {margin: 0 0 20px;}
+	.make-deposit-3 .buttons .yellow {width: 100%; margin: 25px 0 0; box-sizing: border-box; justify-content: center;}
+
+	
+	/* settings */
+	.wallet-account > div {flex-direction: column; padding: 30px; text-align: center;}
+	.wallet-account img {margin: 0 0 20px;}
+	.wallet-account {align-items: inherit;}
+	.wallet-account > div {width: 48.5%;}
+	.wallet-account .account-address {width: 100%;}
+	.wallet-account input {text-align: center;}
+	.security > div {flex-direction: column;}
+	.security .right {margin-top: 30px; flex-direction: row; justify-content: space-between; align-items: center;}
+	.security .right .status {margin: 0;}
+	.security .left .details.globus {justify-content: space-between;}
+	.security .left .details .input {width: 48%; margin-right: 0;}
+	.security .confirm-code {margin-left: 0; margin-top: 30px;}
+	
+	
+	/* referrals */
+	.referrals .ref-menu span {font-size: 12px;}
+	.referrals .ref-menu > * {margin-right: 15px;}
+	.referrals .referral-link {padding: 30px; flex-direction: column;}
+	.referrals .referral-link .input {width: 100%;}
+	.referrals .referral-link .input .link {margin-right: 0;}
+	.referrals .referral-link .my-unline {background: none; width: 100%; padding-top: 35px; padding-bottom: 30px; padding-left: 0;}
+	.referrals .referral-link p {font-size: 14px; margin-left: 0; width: 100%;}
+	.referrals .total-counts > div {flex-direction: column; text-align: center;}
+	.referrals .total-counts .count {margin: 15px 0 0; width: 30%; text-align: center;}
+	.referrals .total-counts {margin-bottom: 25px;}
+	.referrals .ref-coins span {font-size: 15px;}
+	.referrals .ref-coins > div {padding-left: 25px;}
+	.banner-link {flex-direction: column; margin-top: 25px;}
+	.banner-link .link {margin-left: 0; margin-top: 25px; width: 100%; box-sizing: border-box;}
+	.banner-link .banner {max-width: 100%;}
+	.banner-size {text-align: center;}
+	.banner-size > * {margin-right: 0;}
+	
+	/* listing */
+	.token-banners > * {width: 100%; margin-bottom: 10px;}
+	.crypto-listing .crypto .over {justify-content: center;}
+	.crypto-listing .crypto .over .gray {background: none; width: 100%; padding: 0;}
+	.crypto-listing .crypto .over .column-name {left: auto;}
+	.crypto-listing .crypto .over > div {justify-content: center;}
+	.crypto-listing .crypto .over .name .column-name {display: none;}
+	.crypto-listing .crypto .over .name .column-name.second {display: none;}
+	.crypto-listing .crypto .over .amount-wrap.ico {padding-right: 0;}
+	.crypto-listing .crypto .hidden .info {justify-content: space-between;}
+	.crypto-listing .crypto .hidden .info > img {display: none;}
+	.crypto-listing .crypto .hidden .info .column {width: 30%; margin: 0;}
+	.crypto-listing .crypto .hidden .info .column.two {width: 30%; margin: 0;}
+	.crypto-listing .crypto .hidden .info .soc-support {width: 30%; margin: 0;}
+	
+	/* exchange */
+	.ref-menu.ref-menu-exch span {display: none;}
+	.ref-menu.ref-menu-exch > * {width: auto;}
+	.ref-menu.ref-menu-exch {justify-content: space-around;}
+	.exchange {flex-direction: column;}
+	.exchange .yellow {margin: 0;}
+	.exchange .agree {margin: 30px 0 0; text-align: center;}
+	.history > div {flex-wrap: wrap; padding: 20px;}
+	.history .transaction {width: 100%; margin-top: 20px;}
+	.history .transaction .name-column {display: none;}
+	.history .coin {width: 15%;}
+	.history .received {width: 24%;}
+	.history .date {width: 15%;}
+	.you-with {margin-left: 0;}
+	.output {margin-left: 0;}
+	.buttons.exchange {flex-direction: row; margin-left: 0;}
+	.check-transaction {flex-direction: column; align-items: center;}
+	.check-transaction .make-deposit-3 {width: 100%;}
+	.check-transaction .make-deposit-3 .coin-amount {margin: 0;}
+	.check-transaction .make-deposit-3 .coin-amount .amount {margin: 10px 0; box-sizing: border-box;}
+	.check-transaction .make-deposit-3 .coin-amount span {margin: 0;}
+	.check-transaction .make-deposit-3 .buttons {margin: 10px 0; flex-direction: row; justify-content: center;}
+	.check-transaction .make-deposit-3 .coin-amount .amount span {word-wrap: break-word; max-width: 90%; width: 90%; white-space: normal;}
+	.check-transaction .make-deposit-3 .buttons .yellow {width: auto; margin: 0 0 0 20px;}
+	.succesful-details {flex-wrap: wrap; justify-content: center;}
+	.succesful-details .pay-info {width: 100%; margin-top: 20px;}
+}
+
+@media screen and (max-width: 767px) 
+{
+	nav > * {width: 50%; margin: 0; text-align: center; line-height: 37px;}
+	nav .entry-profile {margin-top: 25px; line-height: 38px; font-size: 18px;}
+	.price {flex-direction: column; margin: 0 0 30px 0; width: 100%;}
+	.price > img {display: none;}
+	.price .sell {margin: 15px 0 20px;}
+	.price .other-coins > div {flex-direction: column;}
+	a.social {width: 100%; margin-bottom: 7px;}
+	.lang-selector {width: 100%; order: 10; margin-top: 20px;}
+	.lang-selector-active {width: 100%;}
+	.price .other-coins {padding-top: 150px;}
+	.price .other-coins .coin {margin-left: 0;}
+	.price .coin {margin-left: 0; width: auto;}
+	.top-info {flex-direction: column; margin-top: 45px;}
+	.top-info .inform {text-align: center;}
+	.top-info .inform p {margin-right: 0;}
+	.top-info .inform .inform-text {margin-right: 0;}
+	.top-info .inform .we-are {margin-top: 40px;}
+	.top-info .bonus {margin-top: 30px;}
+	header section {display: flex; flex-direction: column;}
+	.logo-nav {order: 0; margin-top: 20px;}
+	header .top-links {order: 1; margin-top: 60px;}
+	.top-info {order: 2;}
+	.main-title {flex-direction: column; text-align: center;}
+	.main-title img {margin: 10px 0 18px;}
+	.plan-calc {flex-direction: column;}
+	.plan-calc .plan {width: 100%;}
+	.plan-calc .calculator {width: 100%;}
+	.price .other-coins {border-radius: 10px;}
+	.roadmap-dates {padding: 0; flex-direction: column; margin-top: 30px;}
+	.roadmap-dates > div {margin-top: 30px; width: 100%;}
+	.roadmap {display: none;}
+	.roadmap-dates > div p {font-size: 14px;}
+	.roadmap-dates .status {font-size: 15px;}
+	.roadmap-dates span {font-size: 14px;}
+	.roadmap-dates b {font-size: 24px; margin-top: 3px;}
+	.roadmap-dates .image {margin-top: 10px;}
+	.statistic-area {flex-direction: column;}
+	.statistic-total {width: 100%;}
+	.statistic-7-days {width: 100%;}
+	.statistic-7-days h3 {text-align: center;}
+	.statistic-7-days .coins .amount {text-align: center; white-space: nowrap;}
+	.statistic-7-days .coins > div {width: 47%; padding: 5%;}
+	.statistic-7-days .coins {justify-content: space-around;}
+	.wrap-for-arrows .arrow-slide {left: -25px;}
+	.wrap-for-arrows .arrow-slide.right {right: -25px;}
+	.other-sites .hidden {margin-left: 0; width: 100%;}
+	.other-sites-slider > * {text-align: center;}
+	.team .person {width: 100%;}
+	.team .person .foto {width: 175px; height: 175px;}
+	.reserve > div {width: 100%;}
+	.main-title.exch-reserve {margin-top: 40px;}
+	.footer .contacts {width: 100%;}
+	.other-sites {width: 90%;}
+	.top-info .inform .we-are .line {width: 100%;}
+	.support {width: 50%;}
+	.support .info {width: 70%;}
+	.support .info b {font-size: 25px;}
+	.support .close {margin-top: 50px;}
+	.support .info span {font-size: 17px;}
+	.faq-pdf p {display: none;}
+	.faq-pdf .for-angle > div {width: calc(50.0% - 0.5px);}
+	.faq-pdf .info-pdf a {margin-left: 7px;}
+	.support .info .but-cap {flex-direction: column;}
+	.support .info .but-cap .send-mail {width: 100%; margin-bottom: 10px;}
+	.support .info .but-cap .capcha {width: 100%;}
+	.logo-nav-wrap.fixed {display: none !important;}
+	
+	
+	/* dashboard */
+	.dashboard section {width: 60%;}
+	.coins-info .servertime {flex-direction: column;}
+	.coins-info .servertime .date-time {margin-top: 10px;}
+	.coins-info .servertime span {margin-top: 7px;}
+	.coins-info .sell .coin {width: 100%; margin-bottom: 10px;}
+	.coins-info > div {flex-wrap: wrap;}
+	.coins-info .sell .point {display: none;}
+	.coins-info > div {margin-bottom: 30px;}
+	.coins-info .sell .coin span {font-size: 15px;}
+	.coins-info .sell .change {font-size: 15px;}
+	.profile-info .total b {font-size: 13px;}
+	.dash-text {text-align: center;}
+	.balance-deposit .lines > div {flex-direction: column; padding: 25px;}
+	.balance-deposit .lines .coin {width: 100%;}
+	.balance-deposit .lines .amount {width: 100%;}
+	.balance-deposit .lines .actions {width: 100%; justify-content: center;}
+	.balance-deposit .lines .amount {text-align: center;}
+	.balance-deposit .lines .coin {justify-content: center;}
+	.balance-deposit .lines .coin > div {margin-left: 15px;}
+	.balance-deposit .lines .amount {margin: 17px 0 19px;}
+	.h3-deposit {text-align: center;}
+	.deposit .next {margin: 17px 0 0; text-align: center; width: 100%;}
+	.deposit .next-payment span {font-size: 13px;}
+	.deposit .next-payment .orange span {font-size: 13px;}
+	.deposit .next-payment {padding-left: 10px;}
+	.deposit .next-payment .orange span {padding-right: 30px;}
+	.title-h3 {flex-direction: column;}
+	.title-h3 h3 {margin-bottom: 20px;}
+	.exchange-referral .list .operation {flex-direction: column;}
+	.exchange-referral .list .operation > * {text-align: center;}
+	.exchange-referral .list .operation > * {margin: 15px 0;}
+	.exchange-referral .list .operation > *:last-child {margin-bottom: 0;}
+	.exchange-referral .list .details {overflow: hidden; position: relative;}
+	.exchange-referral .list .details a{word-break: break-all;}
+	.exchange-referral .list .details span {font-size: 14px;}
+	.exchange-referral .list .details > div {width: 100%; justify-content: center; margin-bottom: 10px;}
+	.exchange-referral .list .details .tx {margin-bottom: 0;}
+	.exchange-referral .list .details {padding: 29px;}
+	.exchange-referral .list .details a {margin-left: 8px;}
+	.title-h3 .my-level {justify-content: space-between; width: 100%;}
+	.title-h3 .my-level > div {width: 31%; margin: 0; padding: 13px 0; text-align: center; box-sizing: border-box;}
+	.exchange-referral .investor-info .level {width: 100%; text-align: center; margin-bottom: 25px; box-sizing: border-box; order: 1;}
+	.exchange-referral .investor-info .investor {width: 100%; text-align: center; margin-bottom: 10px; margin-top: 40px; order: 0;}
+	.exchange-referral .investor-info > div {flex-direction: column;}
+	.exchange-referral .investor-info .see-ref span {display: block;}
+	.exchange-referral .investor-info .see-ref {width: 100%; order: 1; display: flex; align-items: center; margin-left: 0;}
+	.exchange-referral .investor-info .see-ref span {display: flex;}
+	.exchange-referral .investor-info .mail {width: 100%; order: 1; margin-left: 7px; margin-bottom: 15px;}
+	.exchange-referral .investor-info .investor b {font-size: 16px;}
+	.exchange-referral .investor-info .investor span {font-size: 14px; margin-top: 3px;}
+	.withdraw-history .names {display: none;}
+	.withdraw-history .operation {flex-direction: column;}
+	.withdraw-history .operation .check > div {margin: 20px;}
+	.withdraw-history .operation span {font-size: 15px !important;}
+	.withdraw-history .operation .amount {flex-direction: column; margin: 15px 0;}
+	.withdraw-history .operation .amount > div {margin-right: 0;}
+	.withdraw-history .operation .amount > div:first-child {margin-bottom: 10px;}
+	.withdraw-history .operation .id {width: 100%; text-align: center; margin-bottom: 20px;}
+	.notification, .notification-wrap {box-sizing: border-box; margin-top: 15px;}
+	.notification p {width: auto;}
+	.notification span {white-space: nowrap; margin-left: 15px;}
+	
+	
+	/* withdraw */
+	.with-from-bal h3 {text-align: center;}
+	.with-from-bal .info-reinvest {flex-direction: column;}
+	.with-from-bal .info-reinvest p {margin-left: 0; text-align: center; margin-top: 20px;}
+	.with-from-bal .reinvest {width: 100%;}
+	.with-from-bal > div {flex-direction: column;}
+	.with-from-bal .coin-choice {width: 100%; height: 80px;}
+	.with-from-bal .info-reinvest, .with-from-bal > div {padding-left: 25px; padding-right: 25px;}
+	.with-from-bal .balance {width: 100%; margin-top: 25px;}
+	.with-from-bal .crypto-to .input {margin-right: 0; width: 100%; text-align: center; margin-top: 25px;}
+	.you-withdraw {width: 100%; padding-bottom: 0;}
+	.you-withdraw b {font-size: 19px;}
+	.withdraw-button {width: 100%; margin-top: 25px;}
+	.canceling-plan h3 {text-align: center;}
+	.canceling-plan .input.wide {width: 100%;}
+	.canceling-plan .input {width: 100%;}
+	.canceling-plan .input .with-arrow .plan-list {width: 100%; box-sizing: border-box;}
+	.canceling-plan p {width: 100%; margin-bottom: 25px;}
+	.canceling-plan .comission {width: 100%;}
+	.canceling-plan .plan {padding-bottom: 30px;}
+	.you-withdraw {padding-top: 30px;}
+	.with-from-bal .info-reinvest p {line-height: 15px;}
+	.confirmation .inform {margin: 0 0 30px 0; max-width: 100%;}
+	.confirmation .inform > div {flex-direction: column; max-width: 100%;}
+	.confirmation .inform span {width: auto; display: block; margin-bottom: 10px;}
+	.confirmation .inform .amount {margin: 10px 0 0;}
+	.confirmation .inform b {word-wrap: break-word; max-width: 100%; text-align: center;}
+	.confirmation .tx {flex-direction: column;}
+	.confirmation .tx > div {margin: 15px 0 0;}
+	
+	/* my-deposits */
+	.my-deposits {flex-direction: column;}
+	.my-deposits > div {width: 100%;}
+	.my-deposits .deposit .next {text-align: left;}
+	.options {flex-direction: column;}
+	.options > div {margin: 0; width: 100%; justify-content: space-between; margin-bottom: 15px;}
+	.title-earn {flex-direction: column;}
+	.title-earn .total-earned {margin-top: 25px;}
+	.earnings > div {flex-wrap: wrap; padding: 30px 20px;}
+	.earnings > div > img {display: none;}
+	.earnings .amount {margin: 20px 0 0; width: 100%;}
+	.earnings .amount .gray {width: 100%; justify-content: center;}
+	.earnings .date {font-size: 16px; width: 100%; text-align: center; margin-bottom: 24px;}
+	.earnings span {font-size: 14px;}
+	.earnings .profit b {font-size: 14px;}
+	.earnings .profit {width: 100%; text-align: center; justify-content: center; margin-bottom: 5px;}
+	.earnings span.amount-text {display: none;}
+	.my-deposits .deposit .next {font-size: 14px;}
+	.my-deposits .info .process span {font-size: 14px;}
+	.my-deposits .info {padding-left: 25px; padding-right: 25px;}
+	
+	
+	/* login */
+	.login {width: 85%; flex-direction: column; padding: 25px 20px; background-size: 140% 100%;}
+	.login .left {align-items: center;}
+	.login .left img {margin-left: 0; margin-bottom: 25px; margin-top: 25px;}
+	.login .left .language {margin-left: 0;}
+	.login .right {margin: 25px	0; max-width: 100%; width: 100%;}
+	.login .right .choice-sign .active {border-radius: 5px 5px 0 0; opacity: 1;}
+	.login .right .final .forgot, .login-text, .login .right .not-account span, .login .right .not-account a {color: #fff;}
+	.login .right .not-account {text-align: center; justify-content: center; margin-bottom: 0;}
+	.login .right .not-account span {font-size: 15px;}
+	.login .right .choice-sign > * {opacity: 0.8;}
+	.copyright {margin-left: 0; padding: 0; width: 85%;}
+	.login .right .choice-sign > * {width: 40%; text-align: center;}
+	.login-button {width: 40%;}	
+	.login .right .conditions p {color: #fff;}
+	.login .right .final.final-reg {margin-bottom: 0;}
+	.login .right {margin-bottom: 0;}
+	.login .right .login-text.text-reg {margin-top: 30px;}
+	.login .right .conditions a {color: #fff; text-decoration: underline;}
+	.login .right .conditions a:hover {text-decoration: none;}
+	.login .right .final.final-reg-two {margin-bottom: 0;}
+	.final-reg-two .login-button {width: 100%;}
+	.login .right .login-text.text-reg-two {margin-top: 0;}
+	.login .right .conditions label {color: #fff;}		
+	.login .confirm-steps {margin-left: -28%; margin-top: 30px; margin-bottom: 35px;}
+	.login .confirm {padding-left: 0; height: auto;}
+	.login .confirm .text {font-size: 16px; color: #fff; text-align: center;}
+	.login .confirm p {color: #fff;}
+	.login .confirm h2 {color: #fff;}
+	
+	
+	/* make deposit */
+	.calculator-profits h3 {text-align: center;}
+	.calculator-profits .percent {width: 100%;}
+	.calculator-profits .plan {width: 100%; margin-top: 25px;}
+	.calculator-profits > div {padding: 30px 20px;}
+	.next-days .days b {font-size: 16px;}
+	.calc-amount {width: 100%;}
+	.calculator-profits .info {width: 100%; margin-bottom: 0; margin-top: 25px;}
+	.calculator-profits .info > div {justify-content: center;}
+	.select-payments .payments > div {width: 100%;}
+	.select-payments .payments b {font-size: 16px;}
+	.select-payments .payments img {margin-right: 13px;}
+	.set-amount .calculator {flex-direction: column;}
+	.set-amount .calculator > div {flex-direction: column; padding: 20px;}
+	.set-amount .info-calc > div {margin-top: 25px; background: none; padding-left: 0;}
+	.set-amount .info-calc b {font-size: 20px;}
+	.set-amount .buttons {flex-direction: column;}
+	.set-amount .buttons > div {width: 100%;}
+	.buttons .yellow {margin-bottom: 15px;}
+	.set-amount .info-calc .coin {margin-right: 0;}
+	.make-deposit-2 .qr-code {flex-direction: column; text-align: center;}
+	.make-deposit-2 .qr-code .code {margin: 0 0 25px 0;}
+	.make-deposit-2 {padding: 40px 20px;}
+	.make-deposit-2 .send .text {flex-direction: column;}
+	.make-deposit-2 .send .text b {margin: 15px 0;}
+	.make-deposit-2 .send .text img {margin: 5px 0 0;}
+	.make-deposit-2 .send .text span {font-size: 17px;}
+	.make-deposit-2 .buttons {width: 100%;}
+	.make-deposit-2 .yellow {width: 100%; justify-content: center; margin-bottom: 0;}
+	
+	
+	/* settings */
+	.pole {padding: 30px;}
+	.pole > div {width: 100%; margin-bottom: 35px;}
+	.pole .input span {margin-bottom: 0;}
+	.pole {flex-wrap: wrap;}
+	.ref-menu {justify-content: space-around;}
+	.ref-menu span {display: none;}
+	.ref-menu > * {margin-right: 0; margin-bottom: 20px;}
+	.set-yellow {width: 100%; margin-bottom: 0;}
+	.set-yellow .yellow {justify-content: center;}
+	.wallet-account > div {width: 100%;}
+	.wallet-account .account-address {width: 100%;}
+	.security > div {padding: 40px 25px;}
+	.security .left .info {flex-direction: column; justify-content: center; align-items: center;}
+	.security .left .info > div {margin-left: 0; margin-top: 30px; justify-content: center; display: flex; flex-direction: column; align-items: center;}
+	.security .left .info p {text-align: center; margin-top: 15px;}
+	.security .left .info b {text-align: center;}
+	.security .left .details.globus {flex-direction: column;}
+	.security .left .details .input {width: 100%; margin-bottom: 30px;}
+	.security .right {flex-direction: column;}
+	.security .right .buttons {margin-top: 40px;}
+	.security .right .buttons .yellow {margin-bottom: 0;}
+	.security .confirm-code {margin-right: 0;}
+	.security > div {align-items: center;}
+	
+	
+	/* FAQ */
+	.faq-list .about > img {display: none;}
+	.faq-list .ask .question .arrow {margin-left: 20px;}
+	
+	
+	/* referrals */
+	.referrals .input input {font-size: 12px;}
+	.referral-link .my-unline b {font-size: 12px;}
+	.referrals .referral-link p {text-align: center;}
+	.referrals .total-counts > div {margin: 0; width: 30%;}
+	.referrals .total-counts {width: 100%; justify-content: space-between;}
+	.referrals .ref-investors > div {width: 100%; text-align: center;}
+	.referrals .investor-info .level {width: 100%; margin-bottom: 30px; font-size: 18px;}
+	.referrals .investor-info .investor {margin-left: 0; width: 100%;}
+	.referrals .investor-info .investor b {font-size: 18px; margin-bottom: 5px; display: block;}
+	.referrals .investor-info .mail > img {display: none;}
+	.referrals .investor-info .mail > div {margin-left: 0;}
+	.referrals .investor-info .mail {width: 100%; justify-content: center;}
+	.referrals .ref-investors .see-ref {width: 100%; margin-right: -30px;}
+	.referrals .investor-info .see-ref .ref-list > div {margin-left: 0;}
+	.referrals .ref-coins > div {width: 100%;}
+	.referrals .ref-coins span {font-size: 20px;}
+	.banner-size {flex-direction: column;}
+	
+	/* listing */
+	.content-listing section {margin-left: 0;}
+	.header-listing section {margin-left: 0;}
+	.listing-footer section {margin-left: 0;}
+	.token-head {flex-direction: column;}
+	.token-head > img {display: none;}
+	.token-head .logo-token {margin-right: 0;}
+	.token-info {flex-direction: column;}
+	.token-info .dash-text {width: 100%; margin-bottom: 20px;}
+	.token-text {padding: 25px;}
+	.token-text p {width: 100%; text-align: center;}
+	.token-text img {display: none; }
+	.crypto-listing .crypto .over {flex-direction: column;}
+	.crypto-listing .crypto .over .name {margin-right: 0; margin-bottom: 15px;}
+	.crypto-listing .crypto .over .amount-wrap {margin-right: 0;}
+	.crypto-listing .crypto .over .arrow-wrap {width: 100%; justify-content: center;}
+	.crypto-listing .crypto .over .supply {padding-right: 0;}
+	.crypto-listing .crypto .hidden .info {flex-direction: column;}
+	.crypto-listing .crypto .hidden .info .column {width: 100%;}
+	.crypto-listing .crypto .hidden .info .column.two {width: 100%;}
+	.crypto-listing .crypto .hidden .info .soc-support {width: 100%; align-items: center; display: flex; flex-direction: column;}
+	.crypto-listing .crypto .hidden .info .soc-support .socials {flex-direction: column;}
+	.crypto-listing .crypto .hidden .info .soc-support .socials > * {margin-right: 0;}
+	.crypto-listing .crypto {margin-top: 40px;}
+	.crypto-listing .title {flex-wrap: wrap; justify-content: center;}
+	.crypto-listing .title .gray-circle {margin-left: 10px;}
+	.crypto-listing .title > img {display: none;}
+	.crypto-listing .title b {font-size: 19px;}
+	.crypto-listing .crypto .over .name span {margin: 0 20px;}
+	.crypto-listing.red .title {width: 100%; justify-content: space-between;}
+	.crypto-listing .title .owner {margin: 20px 0 0; width: 100%; justify-content: space-between;}
+	.crypto-listing .title .owner span {font-size: 14px;}
+	.crypto-listing .title .owner .contact {margin: 0; font-size: 14px;}
+	
+	/* exchange */
+	.paragraph {flex-direction: column;}
+	.paragraph p {text-align: center;}
+	.paragraph .add {margin: 30px 0 0;}
+	.exchanger .coin {flex-direction: column;}
+	.exchanger .coin .left {width: 100%;}
+	.exchanger .coin .left .transparent .action {right: -20px;}
+	.exchanger .coin .right {width: 100%;}
+	.exchanger .coin .right .amount > div {width: 40px;}
+	.exchanger .coin .right {margin-top: 40px;}
+	.exchanger .coin .right .ratio {top: auto; bottom: -65px; right: 0; left: 0; text-align: center;}
+	.exchanger .arrow-change {margin-top: 80px;}
+	.history .name-column {display: none;}
+	.history > div {flex-direction: column; align-items: center;}
+	.history .stick {display: none;}
+	.history .date {width: auto; margin-bottom: 25px;}
+	.history .coin {width: auto; margin-bottom: 35px;}
+	.history .received {width: auto; margin-bottom: 25px;}
+	.history .coin span {font-size: 16px; height: 20px; padding-left: 30px;}
+	.output .stick {display: none;}
+	.you-with {text-align: center;}
+	.buttons.exchange {flex-direction: column;}
+	.exchange .yellow {padding: 14px;}
+	.exchange .yellow span {font-size: 18px; margin-left: 15px; font-family: 'helvetica-neue-light';}
+	.exchange .cancel {margin-left: 0;}
+	.output {justify-content: center;}
+	.output .arrow-purple {margin: 20px;}
+	.output .link {box-sizing: border-box;}
+	.output .link > div {box-sizing: border-box; width: 90%;}
+	.output .link span {word-wrap: break-word; max-width: 100%;}
+	.check-transaction .make-deposit-3 .buttons {flex-direction: column;}
+	.check-transaction .make-deposit-3 .buttons .yellow {margin: 20px 0 0;}
+	.succesful-details .pay-info > div {max-width: 100%;}
+	.succesful-details .pay-info span {word-wrap: break-word; max-width: 90%;}
+}
+
+@media screen and (max-width: 400px) 
+{
+}

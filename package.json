@@ -1,0 +1,29 @@
+{
+  "name": "ccczz-portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "make:page": "node scripts/make-page.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "jose": "^5.0.0",
+    "mysql2": "^3.6.5",
+    "next": "13.4.0",
+    "pdf-parse": "^2.4.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "25.0.8",
+    "@types/react": "19.2.8",
+    "autoprefixer": "10.4.14",
+    "postcss": "8.4.24",
+    "tailwindcss": "3.4.7",
+    "typescript": "5.1.6"
+  }
+}

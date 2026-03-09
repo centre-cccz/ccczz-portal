@@ -1,0 +1,6 @@
+/* tailwind.css - placeholder for Tailwind directives if used */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add Tailwind config and build step to generate CSS in production */
