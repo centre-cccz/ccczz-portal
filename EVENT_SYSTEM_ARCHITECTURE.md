@@ -145,7 +145,7 @@ event-worker:
     dockerfile: Dockerfile.worker
   environment:
     REDIS_URL: redis://cache:6379
-    DB_URL: mysql://ccclezoo_julio:selej50@:3306/ccclezoo_portail
+    DB_URL: mysql://DB_USER:DB_PASS@DB_HOST:3306/DB_NAME
   depends_on:
     - cache
     - db
@@ -158,7 +158,7 @@ webhook-service:
     dockerfile: Dockerfile
   environment:
     REDIS_URL: redis://cache:6379
-    DB_URL: mysql://ccclezoo_julio:selej50@:3306/ccclezoo_portail
+    DB_URL: mysql://DB_USER:DB_PASS@DB_HOST:3306/DB_NAME
   ports:
     - "3001:3000"  # Isolated port
   depends_on:

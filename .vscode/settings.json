@@ -1,5 +1,10 @@
-﻿{
-    "prisma.pinToPrisma6": true,
-    "figmaCssToTailwind.geminiApiKey": "YOUR_API_KEY_HERE",
-    "CodeGPT.apiKey": "YOUR_OPENAI_KEY_HERE"
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prisma.pinToPrisma6": true
 }

@@ -7,13 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "make:page": "node scripts/make-page.mjs"
+    "make:page": "node scripts/make-page.mjs",
+    "test": "npm run lint",
+    "deploy": "npx vercel --prod",
+    "db:migrate": "node -e \"console.log('Run SQL migrations via cPanel/MySQL pipeline (see docs).')\""
   },
   "dependencies": {
     "dotenv": "^16.3.1",
     "jose": "^5.0.0",
     "mysql2": "^3.6.5",
-    "next": "13.4.0",
+    "next": "^16.1.6",
     "pdf-parse": "^2.4.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -22,7 +25,7 @@
     "@types/node": "25.0.8",
     "@types/react": "19.2.8",
     "autoprefixer": "10.4.14",
-    "postcss": "8.4.24",
+    "postcss": "^8.5.8",
     "tailwindcss": "3.4.7",
     "typescript": "5.1.6"
   }

@@ -1,5 +1,4 @@
---Active: 1770479935958@@41.79.235.70@3306
-    import React from 'react';
+import React from 'react';
 
 interface BenefitCardProps {
     icon: React.ReactNode;

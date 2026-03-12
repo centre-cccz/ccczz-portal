@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "github.copilot",
+    "github.copilot-chat",
+    "eamodio.gitlens",
+    "prisma.prisma",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mysql",
+    "supabase.supabase-vscode",
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "rangav.vscode-thunder-client",
+    "vercel.vercel",
+    "github.vscode-github-actions"
+  ],
+  "unwantedRecommendations": [
+    "formulahendry.code-runner",
+    "hookyqr.beautify"
+  ]
+}
