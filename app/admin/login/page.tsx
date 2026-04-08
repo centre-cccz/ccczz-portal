@@ -37,13 +37,14 @@ export default function DirectionLoginPage() {
                 throw new Error('Email et mot de passe requis');
             }
 
-            // Générer un token JWT simplifié (en base64)
-            const token = Buffer.from(JSON.stringify({
+            // Générer un token simplifié (en base64) côté client
+            const payload = {
                 id: email.split('@')[0],
                 role,
                 direction_id: direction,
                 email,
-            })).toString('base64');
+            };
+            const token = typeof window !== 'undefined' ? window.btoa(JSON.stringify(payload)) : Buffer.from(JSON.stringify(payload)).toString('base64');
 
             // Stocker le token
             localStorage.setItem('auth_token', token);

@@ -34,7 +34,7 @@ export default function DashboardPage() {
         }
 
         try {
-            const decoded = JSON.parse(Buffer.from(token, 'base64').toString('utf8'));
+            const decoded = JSON.parse(typeof window !== 'undefined' ? window.atob(token) : Buffer.from(token, 'base64').toString('utf8'));
             setUser(decoded);
         } catch (err) {
             console.error('Token decode error:', err);
